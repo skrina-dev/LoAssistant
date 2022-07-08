@@ -201,12 +201,49 @@ extension OrehaTableViewController {
             // 실패할 경우에 분기처리는 아래와 같이 합니다.
             case .requestErr(let message) :
                 print("requestErr", message)
+                self.tableView.refreshControl?.endRefreshing()
+                let alert = UIAlertController(title: "Request Error", message: "데이터 파싱 실패", preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: .default) { (action) in }
+                alert.addAction(okAction)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    // 1초 후 실행될 부분
+                    self.present(alert, animated: false, completion: nil)
+                }
+                
             case .pathErr :
                 print("pathErr")
+                self.tableView.refreshControl?.endRefreshing()
+                let alert = UIAlertController(title: "Path Error", message: "데이터 파싱 실패", preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: .default) { (action) in }
+                alert.addAction(okAction)
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    // 1초 후 실행될 부분
+                    self.present(alert, animated: false, completion: nil)
+                }
+                
             case .serverErr :
-                print("serveErr")
+                print("serveeErr")
+                self.tableView.refreshControl?.endRefreshing()
+                
+                let alert = UIAlertController(title: "Server Error", message: "데이터 파싱 실패", preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: .default) { (action) in }
+                alert.addAction(okAction)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    // 1초 후 실행될 부분
+                    self.present(alert, animated: false, completion: nil)
+                }
+                
             case .networkFail:
                 print("networkFail")
+                self.tableView.refreshControl?.endRefreshing()
+                let alert = UIAlertController(title: "Networt Error", message: "데이터 파싱 실패", preferredStyle: UIAlertController.Style.alert)
+                let okAction = UIAlertAction(title: "OK", style: .default) { (action) in }
+                alert.addAction(okAction)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    // 1초 후 실행될 부분
+                    self.present(alert, animated: false, completion: nil)
+                }
             }
         }
     }
